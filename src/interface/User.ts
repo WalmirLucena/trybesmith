@@ -18,6 +18,7 @@ export interface Login extends ILogin {
   id: number
 }
 
-export interface IError {
-  error: string
+export interface DataJWT {
+  id: number,
+  username: string
 }

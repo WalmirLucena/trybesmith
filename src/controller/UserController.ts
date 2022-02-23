@@ -1,22 +1,17 @@
 import { Request, Response } from 'express';
-import { sign } from 'jsonwebtoken';
-import { User } from '../interface/User';
+import { DataJWT, User } from '../interface/User';
 import UserService from '../service/UserService';
 import StatusCode from '../utils/StatusCode';
-
-const secret = 'segredo';
+import utilsJWT from '../utils/utilsJWT';
 
 const create = async (req: Request, res: Response) => {
   const result: User = await UserService.create(req.body);
   const { id, username } = result;
 
-  const data = { id, username };
+  const data: DataJWT = { id, username };
 
-  const token = sign(data, secret, {
-    expiresIn: '1d',
-    algorithm: 'HS256',
-  });
-    
+  const token = utilsJWT.createToken(data);
+
   return res.status(StatusCode.CREATED).json({ token });
 };
 
@@ -30,12 +25,9 @@ const login = async (req:Request, res: Response) => {
 
   const { id, username } = result;
 
-  const data = { id, username };
+  const data: DataJWT = { id, username };
 
-  const token = sign(data, secret, {
-    expiresIn: '1d',
-    algorithm: 'HS256',
-  });
+  const token = utilsJWT.createToken(data);
 
   return res.status(StatusCode.OK).json({ token });
 };

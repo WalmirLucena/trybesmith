@@ -8,3 +8,16 @@ export interface IUser {
 export interface User extends IUser {
   id: number
 }
+
+export interface ILogin {
+  username: string,
+  password: string,
+}
+
+export interface Login extends ILogin {
+  id: number
+}
+
+export interface IError {
+  error: string
+}

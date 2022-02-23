@@ -1,4 +1,4 @@
-import { User } from '../interface/User';
+import { ILogin, User } from '../interface/User';
 import UserModel from '../models/UserModel';
 
 const create = async (data: User) => {
@@ -6,4 +6,10 @@ const create = async (data: User) => {
   return result;
 };
 
-export default { create };
+const login = async (data: ILogin) => {
+  const result = await UserModel.getUserByPassword(data);
+
+  return result;
+};
+
+export default { create, login };

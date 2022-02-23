@@ -1,11 +1,23 @@
 import { Request, Response } from 'express';
+import { sign } from 'jsonwebtoken';
+import { User } from '../interface/User';
 import UserService from '../service/UserService';
 import StatusCode from '../utils/StatusCode';
 
+const secret = 'segredo';
+
 const create = async (req: Request, res: Response) => {
-  const result = await UserService.create(req.body);
-  
-  return res.status(StatusCode.CREATED).json(result);
+  const result: User = await UserService.create(req.body);
+  const { id, username } = result;
+
+  const data = { id, username };
+
+  const token = sign(data, secret, {
+    expiresIn: '1d',
+    algorithm: 'HS256',
+  });
+    
+  return res.status(StatusCode.CREATED).json({ token });
 };
 
 export default { create };

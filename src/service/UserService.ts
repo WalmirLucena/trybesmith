@@ -1,7 +1,7 @@
-import { IUser } from '../interface/User';
+import { User } from '../interface/User';
 import UserModel from '../models/UserModel';
 
-const create = async (data: IUser) => {
+const create = async (data: User) => {
   const result = await UserModel.create(data);
   return result;
 };

@@ -1,8 +1,8 @@
 export interface IUser {
-  username: 'string',
-  classe: 'string',
-  level: 1,
-  password: 'string'
+  username: string,
+  classe: string,
+  level: number,
+  password: string
 }
 
 export interface User extends IUser {

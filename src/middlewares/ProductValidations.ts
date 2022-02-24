@@ -10,12 +10,14 @@ export const validateToken = async (req: Request, res: Response, next: NextFunct
   }
 
   try {
-    utilsJWT.verifyToken(authorization);
+    const decoded = utilsJWT.verifyToken(authorization);
+
+    req.body = { ...req.body, decoded };
+
+    next();
   } catch (err) {
     return res.status(StatusCode.UNAUTHORIZED).send({ error: 'Invalid token' });
   }
-
-  next();
 };
 
 export const validateName = async (req: Request, res: Response, next: NextFunction) => {

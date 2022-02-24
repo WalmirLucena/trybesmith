@@ -13,4 +13,10 @@ const create = async (req: Request, res: Response) => {
   return res.status(StatusCode.CREATED).json({ item: { id, name, amount } });
 };
 
-export default { create };
+const getAll = async (req: Request, res: Response) => {
+  const products: Product[] = await ProductService.getAll();
+   
+  return res.status(StatusCode.OK).json(products);
+};
+
+export default { create, getAll };

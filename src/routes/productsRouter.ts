@@ -5,5 +5,6 @@ import { validateToken, validateName, validateAmount } from '../middlewares/Prod
 const routerProducts = express.Router();
 
 routerProducts.post('/', validateToken, validateName, validateAmount, ProductController.create);
+routerProducts.get('/', validateToken, ProductController.getAll);
 
 export default routerProducts;

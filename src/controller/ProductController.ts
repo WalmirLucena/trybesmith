@@ -4,9 +4,9 @@ import ProductService from '../service/ProductService';
 import StatusCode from '../utils/StatusCode';
 
 const create = async (req: Request, res: Response) => {
-  const { name, amount } = req.body;
+  const { name, amount, decoded } = req.body;
 
-  const result: Product = await ProductService.create(name, amount);
+  const result: Product = await ProductService.create(name, amount, decoded.id);
     
   const { id } = result;
       

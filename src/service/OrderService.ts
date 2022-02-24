@@ -5,4 +5,9 @@ const create = async (id: number) => {
   return result;
 };
 
-export default { create };
+const getById = async (id: number) => {
+  const result = await OrderModel.getById(id);
+  return result;
+};
+
+export default { create, getById };

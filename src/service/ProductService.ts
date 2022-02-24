@@ -1,8 +1,8 @@
 import { IProduct } from '../interface/Product';
 import ProductModel from '../models/ProductModel';
 
-const create = async (name: string, amount: string) => {
-  const data: IProduct = { name, amount };
+const create = async (name: string, amount: string, orderId: number) => {
+  const data: IProduct = { name, amount, orderId };
 
   const product = await ProductModel.createProduct(data);
   return product;

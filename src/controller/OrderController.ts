@@ -23,7 +23,7 @@ const getById = async (req: Request, res: Response) => {
     return res.status(StatusCode.NOT_FOUND).send({ error: 'Order not found' });
   }
 
-  return res.status(StatusCode.OK).json(result[0]);
+  return res.status(StatusCode.OK).json(result);
 };
 
 export default { create, getById };

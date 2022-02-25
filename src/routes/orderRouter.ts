@@ -7,5 +7,6 @@ const routerOrder = express.Router();
 
 routerOrder.post('/', validateToken, validateProducts, OrderController.create);
 routerOrder.get('/:id', validateToken, OrderController.getById);
+routerOrder.get('/', validateToken, OrderController.getAll);
 
 export default routerOrder;

@@ -22,4 +22,13 @@ const getById = async (orderId: number) => {
   return { id, userId, products };
 };
 
-export default { create, getById };
+const getAll = async () => {
+  const result = await OrderModel.getAll();
+
+  const productList = result.map(({ id, userId, products }) => (
+    { id, userId, products: [products] }));
+  
+  return productList;
+};
+
+export default { create, getById, getAll };

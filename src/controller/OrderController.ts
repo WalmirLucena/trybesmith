@@ -24,4 +24,10 @@ const getById = async (req: Request, res: Response) => {
   return res.status(StatusCode.OK).json(result);
 };
 
-export default { create, getById };
+const getAll = async (req: Request, res: Response) => {
+  const result = await OrderService.getAll();
+  
+  return res.status(StatusCode.OK).json(result);
+};
+
+export default { create, getById, getAll };

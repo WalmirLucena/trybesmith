@@ -5,7 +5,7 @@ import StatusCode from '../utils/StatusCode';
 const create = async (req: Request, res: Response) => {
   const { products, decoded } = req.body;
 
-  const result = await OrderService.create(decoded.id);
+  const result = await OrderService.create(decoded.id, products);
     
   const { userId } = result;
       
@@ -14,13 +14,11 @@ const create = async (req: Request, res: Response) => {
 
 const getById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  console.log(id);
-  
+ 
   const result = await OrderService.getById(Number(id));
-  console.log(result, 'controller');
-
-  if (!result) {
-    return res.status(StatusCode.NOT_FOUND).send({ error: 'Order not found' });
+  
+  if (result.error) {
+    return res.status(StatusCode.NOT_FOUND).send({ error: result.error });
   }
 
   return res.status(StatusCode.OK).json(result);
